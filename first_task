@@ -1,0 +1,138 @@
+#!/bin/bash
+if [[ $1 = -d ]]
+then
+if [[ $2 = -- ]]
+then
+for i in ${@:4:$#}
+do
+num_of_char=$i
+echo "$i"
+NAME=`echo "$i" | cut -d'.' -f1`
+EXTENSION=`echo "$i" | cut -d'.' -f2`
+if [[ $NAME = $EXTENSION ]]
+then
+if [[ ${#num_of_char} -eq ${#NAME} ]]
+then
+NEW_NAME="${NAME}-$3"
+else
+NEW_NAME="${NAME}-$3.${EXTENSION}"
+fi
+else
+NEW_NAME="${NAME}-$3.${EXTENSION}"
+fi
+echo "$NEW_NAME"
+echo "-------------"
+done
+else
+for i in ${@:3:$#}
+do
+num_of_char=$i
+echo "$i"
+NAME=`echo "$i" | cut -d'.' -f1`
+EXTENSION=`echo "$i" | cut -d'.' -f2`
+if [[ $NAME = $EXTENSION ]]
+then
+if [[ ${#num_of_char} -eq ${#NAME} ]]
+then
+NEW_NAME="${NAME}-$2"
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+echo "$NEW_NAME"
+echo "-------------"
+done
+fi
+
+elif [[ $1 = -v ]]
+then
+if [[ $2 = -- ]]
+then
+for i in ${@:4:$#}
+do
+num_of_char=$i
+echo "$i"
+NAME=`echo "$i" | cut -d'.' -f1`
+EXTENSION=`echo "$i" | cut -d'.' -f2`
+if [[ $NAME = $EXTENSION ]]
+then
+if [[ ${#num_of_char} -eq ${#NAME} ]]
+then
+NEW_NAME="${NAME}-$3"
+else
+NEW_NAME="${NAME}-$3.${EXTENSION}"
+fi
+else
+NEW_NAME="${NAME}-$3.${EXTENSION}"
+fi
+echo "$NEW_NAME"
+mv -- "$i" "$NEW_NAME"
+echo "-------------"
+done
+else
+for i in ${@:3:$#}
+do
+num_of_char=$i
+echo "$i"
+NAME=`echo "$i" | cut -d'.' -f1`
+EXTENSION=`echo "$i" | cut -d'.' -f2`
+if [[ $NAME = $EXTENSION ]]
+then
+if [[ ${#num_of_char} -eq ${#NAME} ]]
+then
+NEW_NAME="${NAME}-$2"
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+echo "$NEW_NAME"
+mv -- "$i" "$NEW_NAME"
+echo "-------------"
+done
+fi
+
+elif [[ $1 = -- ]]
+then
+for i in ${@:3:$#}
+do
+num_of_char=$i
+NAME=`echo "$i" | cut -d'.' -f1`
+EXTENSION=`echo "$i" | cut -d'.' -f2`
+if [[ $NAME = $EXTENSION ]]
+then
+if [[ ${#num_of_char} -eq ${#NAME} ]]
+then
+NEW_NAME="${NAME}-$2"
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+mv -- "$i" "$NEW_NAME"
+done
+
+else
+for i in ${@:3:$#}
+do
+num_of_char=$i
+NAME=`echo "$i" | cut -d'.' -f1`
+EXTENSION=`echo "$i" | cut -d'.' -f2`
+if [[ $NAME = $EXTENSION ]]
+then
+if [[ ${#num_of_char} -eq ${#NAME} ]]
+then
+NEW_NAME="${NAME}-$2"
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+else
+NEW_NAME="${NAME}-$2.${EXTENSION}"
+fi
+mv -- "$i" "$NEW_NAME"
+done
+fi
